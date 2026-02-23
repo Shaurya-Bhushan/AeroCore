@@ -282,4 +282,4 @@ This maps core challenge requirements (aircraft outputs, spacecraft outputs, val
 - The framework is intentionally structured for hackathon reliability: deterministic config, one-command execution, and consistent outputs.
 - Submission-oriented docs:
   - Technical report draft: `docs/report.md`
-  - Devpost summary draft: `docs/devpost_summary.md`
+  - Devpost summary draft: [devpost_summary.md](file:///Users/shauryabhushan/Downloads/AeroHacks/docs/devpost_summary.md)
