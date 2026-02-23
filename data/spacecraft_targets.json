@@ -1,0 +1,14 @@
+[
+  {"id": "T1", "lat_deg": 35.0, "lon_deg": -120.0, "value": 12, "data_mb": 160},
+  {"id": "T2", "lat_deg": 40.7, "lon_deg": -74.0, "value": 14, "data_mb": 180},
+  {"id": "T3", "lat_deg": 28.6, "lon_deg": 77.2, "value": 11, "data_mb": 150},
+  {"id": "T4", "lat_deg": 51.5, "lon_deg": -0.1, "value": 13, "data_mb": 170},
+  {"id": "T5", "lat_deg": -33.9, "lon_deg": 151.2, "value": 10, "data_mb": 140},
+  {"id": "T6", "lat_deg": 35.7, "lon_deg": 139.7, "value": 15, "data_mb": 190},
+  {"id": "T7", "lat_deg": 55.8, "lon_deg": 37.6, "value": 10, "data_mb": 145},
+  {"id": "T8", "lat_deg": 1.3, "lon_deg": 103.8, "value": 9, "data_mb": 130},
+  {"id": "T9", "lat_deg": 64.1, "lon_deg": -21.9, "value": 8, "data_mb": 120},
+  {"id": "T10", "lat_deg": -23.5, "lon_deg": -46.6, "value": 11, "data_mb": 160},
+  {"id": "T11", "lat_deg": 48.9, "lon_deg": 2.3, "value": 12, "data_mb": 170},
+  {"id": "T12", "lat_deg": 34.0, "lon_deg": -118.2, "value": 13, "data_mb": 180}
+]

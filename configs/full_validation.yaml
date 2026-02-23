@@ -1,0 +1,186 @@
+seed: 42
+planner_strategy: auto_best
+output_root: outputs
+strict: true
+
+hybrid_ocp:
+  robust_mode: worst_case
+  control_iterations: 1
+  control_initial_step: 0.25
+  max_sequence_candidates: 8
+  max_mutations_per_seed: 14
+  max_control_nodes_aircraft: 12
+  max_control_nodes_spacecraft: 16
+  aircraft_scenarios: [1.0, 0.9, 1.1]
+  spacecraft_scenarios: [1.0, 0.9, 1.1]
+
+aircraft:
+  mission_horizon_s: 18000
+  data_files:
+    waypoints: ../data/aircraft_waypoints.json
+    no_fly_zones: ../data/aircraft_no_fly_zones.json
+  base:
+    x_m: 10000
+    y_m: 10000
+    alt_m: 500
+  waypoints:
+    - {id: WP1, x_m: 25000, y_m: 20000, alt_m: 520, dwell_s: 30, value: 1.0}
+    - {id: WP2, x_m: 90000, y_m: 20000, alt_m: 510, dwell_s: 30, value: 1.0}
+    - {id: WP3, x_m: 105000, y_m: 82000, alt_m: 530, dwell_s: 30, value: 1.0}
+    - {id: WP4, x_m: 28000, y_m: 92000, alt_m: 520, dwell_s: 30, value: 1.0}
+    - {id: WP5, x_m: 15000, y_m: 62000, alt_m: 505, dwell_s: 30, value: 1.0}
+  no_fly_zones:
+    - [[47000, 32000], [76000, 32000], [76000, 69000], [47000, 69000]]
+    - [[58000, 76000], [70000, 76000], [70000, 93000], [58000, 93000]]
+  altitude_min_m: 400
+  altitude_max_m: 1200
+  cruise_speed_mps: 45
+  min_ground_speed_mps: 15
+  cruise_power_w: 420
+  turn_power_w: 500
+  loiter_power_w: 350
+  climb_power_w_per_mps: 170
+  max_turn_rate_deg_s: 4.0
+  max_bank_angle_deg: 32.0
+  max_climb_rate_mps: 4.0
+  battery_capacity_wh: 3200
+  reserve_energy_wh: 300
+  geofence_margin_m: 450
+  path_sample_spacing_m: 450
+  aerodynamics:
+    mass_kg: 7.5
+    wing_area_m2: 0.62
+    cd0: 0.028
+    aspect_ratio: 12.5
+    oswald_efficiency: 0.82
+    propulsive_efficiency: 0.78
+    air_density_kg_m3: 1.225
+    auxiliary_power_w: 70.0
+    cl_max: 1.45
+    stall_margin: 1.10
+    max_propulsion_power_w: 3200.0
+    prop_power_altitude_scale_m: 9000.0
+    temp_offset_c: 0.0
+    propulsion_scale: 0.45
+  wind:
+    base_u_mps: 5.0
+    base_v_mps: -2.0
+    gust_mps: 4.0
+    spatial_scale_m: 30000
+    temporal_period_s: 3600
+    harmonic_ratio: 0.35
+  planner:
+    beam_width: 80
+    max_expansions: 30000
+    max_depth: 32
+    candidate_limit: 10
+    lookahead_s: 18000
+    soft_penalty_weight: 2.0
+    multistart_runs: 1
+    prune_time_bucket_s: 180.0
+    prune_energy_bucket_wh: 20.0
+    prune_battery_bucket_wh: 10.0
+    prune_data_buffer_bucket_mb: 100.0
+    prune_science_bucket: 10.0
+  objective:
+    value_weight: 0.5
+    delivered_weight: 0.0
+    time_weight: 0.02
+    energy_weight: 0.08
+    required_completion_bonus: 600
+    unfinished_required_penalty: 8000
+
+spacecraft:
+  mission_days: 7
+  data_files:
+    targets: ../data/spacecraft_targets.json
+    ground_stations: ../data/spacecraft_ground_stations.json
+  altitude_m: 550000
+  inclination_deg: 97.6
+  raan_deg: -30
+  arg_lat0_deg: 17.0
+  eccentricity: 0.0012
+  arg_perigee_deg: 25.0
+  mean_anomaly0_deg: 0.0
+  epoch_theta0_deg: 0.0
+  epoch_year: 2026
+  epoch_day_of_year: 50.0
+  epoch_utc_hour: 0.0
+  j2_enabled: true
+  drag_enabled: true
+  ballistic_coefficient_kg_m2: 110.0
+  atmosphere_ref_density_kg_m3: 5.0e-12
+  atmosphere_ref_altitude_m: 550000.0
+  atmosphere_scale_height_m: 70000.0
+  atmosphere_corotation_factor: 1.0
+  propagation_step_s: 30.0
+  propagation_backend: auto
+  opportunity_step_s: 90
+  observation_duration_s: 120
+  downlink_duration_s: 300
+  max_obs_windows: 180
+  max_dl_windows: 160
+  slew_rate_deg_s: 1.2
+  battery_capacity_wh: 320
+  battery_min_wh: 65
+  battery_initial_wh: 220
+  data_buffer_capacity_mb: 3200
+  obs_power_w: 55
+  downlink_power_w: 45
+  housekeeping_power_w: 15
+  solar_charge_w: 42
+  solar_capture_efficiency: 0.55
+  repeat_value_decay: 0.72
+  repeat_value_floor_fraction: 0.30
+  downlink_rate_mb_s: 2.6
+  max_ops_per_orbit: 4
+  min_downlink_elevation_deg: 10.0
+  max_observation_off_nadir_deg: 55.0
+  min_operation_gap_s: 90
+  targets:
+    - {id: T1, lat_deg: 35.0, lon_deg: -120.0, value: 12, data_mb: 160}
+    - {id: T2, lat_deg: 40.7, lon_deg: -74.0, value: 14, data_mb: 180}
+    - {id: T3, lat_deg: 28.6, lon_deg: 77.2, value: 11, data_mb: 150}
+    - {id: T4, lat_deg: 51.5, lon_deg: -0.1, value: 13, data_mb: 170}
+    - {id: T5, lat_deg: -33.9, lon_deg: 151.2, value: 10, data_mb: 140}
+    - {id: T6, lat_deg: 35.7, lon_deg: 139.7, value: 15, data_mb: 190}
+    - {id: T7, lat_deg: 55.8, lon_deg: 37.6, value: 10, data_mb: 145}
+    - {id: T8, lat_deg: 1.3, lon_deg: 103.8, value: 9, data_mb: 130}
+    - {id: T9, lat_deg: 64.1, lon_deg: -21.9, value: 8, data_mb: 120}
+    - {id: T10, lat_deg: -23.5, lon_deg: -46.6, value: 11, data_mb: 160}
+    - {id: T11, lat_deg: 48.9, lon_deg: 2.3, value: 12, data_mb: 170}
+    - {id: T12, lat_deg: 34.0, lon_deg: -118.2, value: 13, data_mb: 180}
+  ground_stations:
+    - {id: GS1, lat_deg: 78.2, lon_deg: 15.6}
+    - {id: GS2, lat_deg: 64.8, lon_deg: -147.7}
+  planner:
+    beam_width: 48
+    max_expansions: 45000
+    max_depth: 300
+    candidate_limit: 16
+    lookahead_s: 25200
+    soft_penalty_weight: 2.0
+    multistart_runs: 1
+    prune_time_bucket_s: 300.0
+    prune_energy_bucket_wh: 25.0
+    prune_battery_bucket_wh: 8.0
+    prune_data_buffer_bucket_mb: 80.0
+    prune_science_bucket: 8.0
+  objective:
+    value_weight: 0.0
+    delivered_weight: 18.0
+    time_weight: 0.0005
+    energy_weight: 0.03
+    required_completion_bonus: 0
+    unfinished_required_penalty: 500
+    unsolved_penalty: 200
+
+validation:
+  mode: full
+  seed: 123
+  aircraft_monte_carlo_runs: 24
+  spacecraft_monte_carlo_runs: 12
+  aircraft_hybrid_eval_runs: 10
+  spacecraft_hybrid_eval_runs: 6
+  spacecraft_timing_perturbation_runs: 4
+  baseline_use_hybrid: false

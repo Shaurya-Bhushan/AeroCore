@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+
+# Project Specific
+outputs/
+data/results_bundle.zip
+
+# IDE/System
+.DS_Store
+.vscode/
+.idea/
+.gemini/
